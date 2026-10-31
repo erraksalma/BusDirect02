@@ -1,11 +1,4 @@
-// export function creerCarte(trajet){
-//     return `
-//     <article 
-//       < class="text-xl font-bold">
-//       ${trajet.departure}
-//       </h2>
-//     </article>
-// } 
+
 export function creerCarte(trajet){
     return ` 
     <article class="rounded-lg bg-white p-4">
