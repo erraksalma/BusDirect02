@@ -14,7 +14,7 @@ export function creerCarte(trajet){
         bg="bg-green-100";
     }
     return ` 
-    <article class="rounded-lg ${bg} p-4">
+    <article class="rounded-lg ${bg} p-4 mt-8">
     <h2 class="text-xl font-bold">${trajet.departure} - ${trajet.destination}</h2>
     <p>Depart : ${trajet.departureTime}</p>
     <p>Arrivee : ${trajet.arrivalTime}</p>
