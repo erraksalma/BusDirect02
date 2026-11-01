@@ -1,13 +1,28 @@
 
 export function creerCarte(trajet){
+    const placesLibre = trajet.capacity - trajet.reservations.length;
+    let statut="";
+    let couleur="";
+    let bg="";
+    if(placesLibre==0){
+        statut="Complet";
+        couleur="bg-red-200 text-red-800";
+        bg="bg-red-200";
+    }else{
+        statut="Disponible";
+        couleur="bg-green-100 text-green-800";
+        bg="bg-green-100";
+    }
     return ` 
-    <article class="rounded-lg bg-white p-4">
+    <article class="rounded-lg ${bg} p-4">
     <h2 class="text-xl font-bold">${trajet.departure} - ${trajet.destination}</h2>
     <p>Depart : ${trajet.departureTime}</p>
     <p>Arrivee : ${trajet.arrivalTime}</p>
     <p>Prix : ${trajet.price}DH</p>
     <p>Capacity : ${trajet.capacity} Places</p>
-    <button  class="rounded-lg bg-blue-950 text-yellow-100 p-2 data-id="${trajet.id}">Reserver</button>
+    <p>Places libres : ${placesLibre}</p>
+    <span class="${couleur}">${statut} </span><br>
+    <button  class="rounded-lg bg-blue-950 text-yellow-100 p-2" data-id="${trajet.id}">Reserver</button>
  </article>
  `
 }
