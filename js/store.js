@@ -5,4 +5,5 @@ export async function initialiser(){
     localStorage.setItem("trips",JSON.stringify(trajets));
     console.log("trajets charges :", trajets);
     return trajets;
-}       
+}   
+
