@@ -2,6 +2,7 @@
 import { initialiser } from "./store.js";
 import { creerCarte, afficherStatistiques , afficherPassagerst } from "./render.Js";
 const recherche = document.querySelector("#recherche");
+// const recherche=document.querySelector("#recherche");
 const status = document.querySelector("#status");
 const pagination =document.querySelector("#pagination");
 let pageActuel =1;
@@ -12,6 +13,7 @@ async function afficherTrajets() {
     const texte = recherche.value.toLowerCase();
     const resultatR = trajets.filter(function (trajet) {
         return trajet.departure.toLowerCase().includes(texte) || trajet.destination.toLowerCase().includes(texte);
+      
     });
     const resultatS = resultatR.filter(function (trajet) {
         const placesLibre = trajet.capacity - trajet.reservations.length;
@@ -44,7 +46,7 @@ afficherPag(resultatS.length);
     let totalP= Math.ceil(totalT/trajetparP);
     for(let i=1;i<= totalP;i++){
         pagination.innerHTML+= `
-        <button data-page="${i}" class="bg-blue-950 text-white p-4  rounded">${i}</button>`;
+        <button data-page="${i}" class="bg-blue-950 text-white p-3 text-sm font-semibold rounded cursor-none">${i}</button>`;
     }
 }
 

@@ -13,16 +13,15 @@ export function creerCarte(trajet){
         bg="bg-green-100";
     }
     return ` 
-    <article class="rounded-lg ${bg} p-4 mt-8">
-    <h2 class="text-xl font-bold">${trajet.departure} - ${trajet.destination}</h2>
-    <p>Depart : ${trajet.departureTime}</p>
-    <p>Arrivee : ${trajet.arrivalTime}</p>
-    <p>Prix : ${trajet.price}DH</p>
-    <p>Capacity : ${trajet.capacity} Places</p>
-    <p>Places libres : ${placesLibre}</p>
-    <p>liste d'attente</p>  
+    <article class="rounded-lg ${bg} p-4 mt-8 text-sm font-semibold flex flex-col space-y-3">
+    <h2 class="text-xl font-bold">${trajet.departure} => ${trajet.destination}</h2>
+    <p>  🚌➡️ Depart : ${trajet.departureTime}</p>
+    <p>  ➡️🚌 Arrivee : ${trajet.arrivalTime}</p>
+    <p>  💵 Prix : ${trajet.price} MAD</p>
+    <p>👥 Capacity : ${trajet.capacity} Places</p>
+    <p>🟢 Places libres : ${placesLibre}</p>
     <span class="${couleur}">${statut} </span><br>
-    <button  class="rounded-lg bg-blue-950 text-yellow-100 p-2" data-id="${trajet.id}" <a href="cabine.html">Reserver</a></button>
+    <a href="cabine.html?id=${trajet.id}"  class="rounded-lg border border-yellow-300 bg-blue-950 text-yellow-100 p-3 m-8 ">Reserver</a>
  </article>
  `
 } 
