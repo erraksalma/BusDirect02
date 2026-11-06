@@ -1,75 +1,72 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>BusDirect</title>
-    <meta
-      name="description"
-      content="BusDirect un site degestion des réservations de sièges pour les trajets entre les villes safi et marrakech"
-    />
-    <link rel="stylesheet" href="./src/output.css" />
-  </head>
-  <body class="flex min-h-screen flex-col bg-yellow-50 text-blue-950">
-    <header class="bg-yellow-100 shadow-md">
-      <nav
-        class="mx-auto flex max-w-7xl items-center gap-3 px-2 py-1 sm:px-6 lg:px-8" >
-        <img
-          src="/img/logo.png"
-          alt="BusDirect logo"
-          class="h-12 w-12 object-contain sm:h-16 sm:w-16"/>
-        <div class="min-w-0">
-          <h1
-            class="text-xl font-extrabold tracking-tight text-blue-950 sm:text-2xl"
-          >
-            Bus<span class="text-yellow-500">Direct</span>
-          </h1>
-            
-        </div>
-      </nav>
-    </header>
-<main class="mx-auto w-full  max-w-6xl flex-1 px-4 py-5  sm:px-6 lg:px-7 ">
-<h2 class="mb-6 text-2xl font-extrabold text-blue-950 sm:text-3xl">Nos trajets</h2>
-<section class="flex flex-wrap justify-between gap-4 rounded-xl bg-yellow-100 p-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col-3 gap-3 items-center">
-    <label for="recherche" class="  mb-1 text-sm font-semibold text-blue-950 ">Rechercher:</label>
-    <input id="recherche" type="text"placeholder="veuillez tapez... "class="w-full rounded-lg  bg-white px-3 py-2 text-sm text-blue-950">
-    <!-- <button class="bg-blue-950 rounded-lg  text-yellow-100 p-1" id="btnRecherche" type="button">Rechercher</button> -->
-    </div>
-    <div class="flex flex-col-2 gap-3 items-center">
-        <label for="status" class="mb-1 text-sm font-semibold text-blue-950 ">Status:</label>
-        <select id="status" class="w-full rounded-lg  bg-white px-3 py-2 text-sm text-blue-950">
-            <option value="tous">Tous</option>
-            <option value="dispo">Disponible</option>
-            <option value="complet">Complet</option>
-            
-        </select> 
-    </div>
-    <div class="flex flex-col-2 gap-3 items-center">
-<h2 class="mb-1 text-sm font-semibold text-blue-950 ">Recette total</h2>
-<p class="bg-white  text-sm font-semibold p-2 rounded-lg" id="recetteTotale">0 DH</p>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>BusDirect</title>
+  <meta name="description"
+    content="BusDirect un site degestion des réservations de sièges pour les trajets entre les villes safi et marrakech" />
+  <link rel="stylesheet" href="./src/output.css" />
+</head>
 
-    <div class="flex flex-col-2 gap-3 items-center">
-<h2 class="mb-1 text-sm font-semibold text-blue-950 ">Passagers:</h2>
-<p class="bg-white p-2 rounded-lg text-sm font-semibold" id="PassTotale">0</p>
-    </div>
-</section>
-
-<section id="listeTrajets" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-
-</section>
-<div id="pagination" class="mt-6 flex justify-center gap-2"></div>
-
-</main>
-     <footer class="bg-yellow-100 shadow-inner">
-      <div class="mx-auto max-w-7xl  py-3 sm:px-6 lg:px-8">
-        <p class="text-center text-sm text-blue-950">
-          &copy; 2026 BusDirect
+<body class="flex min-h-screen flex-col bg-yellow-50 text-blue-950">
+  <header class="bg-yellow-100 shadow-md">
+    <nav class="mx-auto flex max-w-7xl items-center gap-3 px-2 py-1 sm:px-6 lg:px-8">
+      <img src="/img/logo.png" alt="BusDirect logo" class="h-12 w-12 object-contain sm:h-16 sm:w-16" />
+      <div class="min-w-0">
+        <h1 class="text-xl font-extrabold tracking-tight text-blue-950 sm:text-2xl">
+          Bus<span class="text-yellow-500">Direct</span>
+        </h1>
+      </div>
+    </nav>
+  </header>
+  <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-5 sm:px-6 lg:px-7">
+    <h2 class="mb-6 text-2xl font-extrabold text-blue-950 sm:text-3xl">
+      Nos trajets
+    </h2>
+    <section class="flex flex-wrap justify-between gap-4 rounded-xl bg-yellow-100 p-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col-3 gap-3 items-center">
+        <label for="recherche" class="mb-1 text-sm font-semibold text-blue-950">Rechercher:</label>
+        <input id="recherche" type="text" placeholder="veuillez tapez... "
+          class="w-full rounded-lg bg-white px-3 py-2 text-sm text-blue-950" />
+        <!-- <button class="bg-blue-950 rounded-lg  text-yellow-100 p-1" id="btnRecherche" type="button">Rechercher</button> -->
+      </div>
+      <div class="flex flex-col-2 gap-3 items-center">
+        <label for="status" class="mb-1 text-sm font-semibold text-blue-950">Status:</label>
+        <select id="status" class="w-full rounded-lg bg-white px-3 py-2 text-sm text-blue-950">
+          <option value="tous">Tous</option>
+          <option value="dispo">Disponible</option>
+          <option value="complet">Complet</option>
+        </select>
+      </div>
+      <div class="flex flex-col-2 gap-3 items-center">
+        <h2 class="mb-1 text-sm font-semibold text-blue-950">
+          Recette total
+        </h2>
+        <p class="bg-white text-sm font-semibold p-2 rounded-lg" id="recetteTotale">
+          0 DH
         </p>
       </div>
-    </footer>
-    <script type="module" src="/js/main-trajets.js"></script>
-    </body>
-    </html>
+
+      <div class="flex flex-col-2 gap-3 items-center">
+        <h2 class="mb-1 text-sm font-semibold text-blue-950">Passagers:</h2>
+        <p class="bg-white p-2 rounded-lg text-sm font-semibold" id="PassTotale">
+          0
+        </p>
+      </div>
+    </section>
+
+    <section id="listeTrajets" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"></section>
+    <div id="pagination" class="mt-6 flex justify-center gap-2"></div>
+  </main>
+  <footer class="bg-yellow-100 shadow-inner">
+    <div class="mx-auto max-w-7xl py-3 sm:px-6 lg:px-8">
+      <p class="text-center text-sm text-blue-950">&copy; 2026 BusDirect</p>
+    </div>
+  </footer>
+  <script type="module" src="/js/main-trajets.js"></script>
+</body>
+
+</html>

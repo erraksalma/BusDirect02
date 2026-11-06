@@ -28,7 +28,7 @@ export function creerCarte(trajet){
 export function afficherStatistiques(trajets){
     let recetteTotale=0;
     for(let i =0; i< trajets.length; i++){
-        recetteTotale  += trajets[i].reservations.length* trajets[i].price;
+        recetteTotale  += trajets[i].reservations.length * trajets[i].price;
     }
     document.querySelector("#recetteTotale").textContent= recetteTotale+"DH";
 }
