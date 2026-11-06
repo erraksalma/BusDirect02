@@ -44,7 +44,17 @@ msgSupprimer.className="text-green-700 font-bold mt-2";
 formSupprimer.after(msgSupprimer);
 
 
+const formAttente = document.getElementById("attente-form");
+const nomAttente = document.getElementById("attente-name");
+const telephoneAttente = document.getElementById("attente-phone");
 
+const erreurNomAttente = document.getElementById("attente-error-name");
+const erreurTelephoneAttente = document.getElementById("attente-error-phone");
+
+const btnReservation = document.querySelector("#btn-confirm");
+const btnAttente = document.querySelector("#btn-attente");
+
+const listeAttente = document.getElementById("attente-list");
 
 async function afficherCabine() {
     try{
@@ -63,6 +73,8 @@ const reservations = trajet.reservations;
 // console.log("Réservations affichées :", reservations);
 remplirrselect();
 remplirPassagers();
+afficherListeAttente();
+
 departure.textContent=trajet.departure;
 destination.textContent=trajet.destination;
 price.textContent=trajet.price+  "DH";
@@ -71,6 +83,13 @@ arrivalTime.textContent=trajet.arrivalTime;
 
 
 const placesLibres = trajet.capacity-reservations.length;
+if (placesLibres === 0) {
+    btnReservation.disabled = true;
+    btnAttente.disabled = false;
+} else {
+    btnReservation.disabled = false;
+    btnAttente.disabled = true;
+}
 total.textContent=trajet.capacity;
 libres.textContent=placesLibres;
 
@@ -182,6 +201,52 @@ selectModifier.addEventListener("change", function() {
         editPhone.value = "";
     }
 });
+function afficherListeAttente(){
+    listeAttente.innerHTML="";
+    trajet.waitingList.forEach(function(passager,index){
+        const li = document.createElement("li");
+        li.className="flex justify-between items-center gap-2 mb-3";
+        li.textContent=(index+1) + "."+ passager.name + "-"+ passager.phone;
+   const btnRetirer=document.createElement("button");
+   btnRetirer.textContent="Retirer";
+   btnRetirer.dataset.index=index;
+   btnRetirer.className= "rounded-xl bg-blue-950 px-4 py-2 text-sm font-semibold text-yellow-100 shadow-md hover:bg-blue-900";
+
+   li.appendChild(btnRetirer);
+        listeAttente.appendChild(li);
+    });
+}    formAttente.addEventListener("submit",function(e){
+    e.preventDefault();
+     const nom = nomAttente.value.trim();
+    const telephone = telephoneAttente.value.trim();
+    const erreurs = validerRES(nom,telephone,trajet);
+    erreurNomAttente.textContent = erreurs.erreurNom;
+    erreurTelephoneAttente.textContent = erreurs.erreurTele;
+    if(erreurs.erreurNom || erreurs.erreurTele){
+        return;
+    }
+  trajet.waitingList=[
+    ...trajet.waitingList,{name:nom,phone:telephone}
+  ];
+  localStorage.setItem("trips", JSON.stringify(trajets));
+    afficherListeAttente();
+
+    formAttente.reset();
+
+});
+listeAttente.addEventListener("click", function(e){
+    if(e.target.tagName=="BUTTON"){
+        const index = Number(e.target.dataset.index);
+
+        trajet.waitingList = trajet.waitingList.filter(function(passager, i) {
+            return i !== index;
+
+    });
+    localStorage.setItem("trips", JSON.stringify(trajets));
+    afficherListeAttente();
+}
+});
+
 function remplirSiegesModification(siegeActuel) {
     editSeat.innerHTML='<option value="">garder meme siege</option>';
     for(let i=1; i<=trajet.capacity;i++){
@@ -194,13 +259,15 @@ return r.seat==i && r.seat !=siegeActuel;
             option.textContent = "Siège " + i + (vip(i) ? " - VIP" : "");
             editSeat.appendChild(option);
     }
-}}
-
-
-
-
+}
+}
 
 async function reserver() {
+
+    if (trajet.reservations.length >= trajet.capacity) {
+    msg.textContent = "Le trajet est complet.";
+    return;
+}
     const nom = entrernom.value.trim();
     const telephone=entrertelephone.value.trim();
 
@@ -326,14 +393,31 @@ formSupprimer.addEventListener("submit",async function(e) {
     trajet.reservations= trajet.reservations.filter(function(reservation){
         return reservation.seat!=siege;
     });
+        let message = "Réservation supprimée avec succès !";
+    if (trajet.waitingList.length > 0) {
+        const premier = trajet.waitingList[0];
+        const nouvelleReservation = {
+            seat: siege,
+            name: premier.name,
+            phone: premier.phone
+        };
+
+        trajet.reservations.push(nouvelleReservation);
+        trajet.waitingList.shift();
+
+        message = premier.name + " a obtenu le siège " + siege;
+
+    } 
     localStorage.setItem("trips",JSON.stringify(trajets));
 
     await afficherCabine();
-     msgSupprimer.textContent = "Réservation supprimée avec succès !";
+    selectSupprimer.value = "";
+
+     msgSupprimer.textContent = message;
      setTimeout(function() {
         msgSupprimer.textContent = "";
     }, 3000);
-    
-     selectSupprimer.value = "";
 });
+
 afficherCabine();
+

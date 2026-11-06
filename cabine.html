@@ -63,7 +63,7 @@
            <span>  Poste Conducteur </span>
           </div>
           <!-- <div id="seats" class="grid grid-cols-4 gap-3"></div> -->
-          <div id="seats"class="grid gap-3" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
+          <div id="seats" class="grid gap-3" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
 
 </div>
         </div>
@@ -102,6 +102,43 @@
       </div>
     </div>
   </form>
+  
+<form id="attente-form" class="bg-yellow-100 p-6">
+    <h2 class="mb-4 border-b border-yellow-200 pb-3 text-base font-bold text-blue-950">
+        Liste d'attente
+    </h2>
+
+    <div class="space-y-4">
+        <div>
+            <label for="attente-name" class="mb-1 block text-xs font-semibold text-blue-950">
+                Nom du passager
+            </label>
+            <input id="attente-name" type="text" placeholder="Ex: Salma Errak"
+                class="w-full bg-white px-3 py-2 text-sm text-blue-950">
+            <p id="attente-error-name" class="text-red-500 text-sm"></p>
+        </div>
+
+        <div>
+            <label for="attente-phone" class="mb-1 block text-xs font-semibold text-blue-950">
+                Téléphone
+            </label>
+            <input id="attente-phone" type="tel" placeholder="Ex: 06..."
+                class="w-full bg-white px-3 py-2 text-sm text-blue-950">
+            <p id="attente-error-phone" class="text-red-500 text-sm"></p>
+        </div>
+       <button id="btn-attente" type="submit"
+    class="rounded-xl bg-blue-950 px-4 py-2 text-sm font-semibold text-yellow-100 shadow-md hover:bg-blue-900">
+    Rejoindre la liste
+</button>
+    </div>
+</form>
+<div class="bg-yellow-100 p-6">
+    <h2 class="mb-4 border-b border-yellow-200 pb-3 text-base font-bold text-blue-950">
+        Passagers en attente
+    </h2>
+
+    <ul id="attente-list"></ul>
+</div>
        <form id="modification-form" class="bg-yellow-100 p-6">
     <h2 class="mb-4  border-b border-yellow-200 pb-3 text-base font-bold text-blue-950">
        Modifier une place
