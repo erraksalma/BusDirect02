@@ -78,6 +78,13 @@
         <label for="reserve-name" class="mb-1 block text-xs font-semibold text-blue-950">Pasager</label>
         <input id="reserve-name" type="text" placeholder="Ex:Salma Errak"
           class="w-full  bg-white px-3 py-2 text-sm text-blue-950  focus:outline-none focus:ring-2 focus:ring-blue-950" />
+          <p id="error-name" class="text-red-500 text-sm"></p>
+      </div>
+      <div>
+        <label for="reserve-phone" class="mb-1 block text-xs font-semibold text-blue-950">Telephone</label>
+        <input id="reserve-phone" type="tel" placeholder="Ex:06...."
+          class="w-full  bg-white px-3 py-2 text-sm text-blue-950  focus:outline-none focus:ring-2 focus:ring-blue-950" />
+          <p id="error-phone" class="text-red-500 text-sm"></p>
       </div>
       <div>
         <label for="reserve-seat" class="mb-1 block text-xs font-semibold text-blue-950">Siège selectionne</label>
@@ -86,6 +93,7 @@
             class="min-w-0 flex-1  bg-white px-3 py-2 text-sm text-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-950">
             <option value="">  Sièges</option>
           </select>
+          
           <button id="btn-confirm" type="submit"
             class="rounded-xl bg-blue-950 px-4 py-2 text-sm font-semibold text-yellow-100 shadow-md hover:bg-blue-900">
             Confirmer
